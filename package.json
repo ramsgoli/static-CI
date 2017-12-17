@@ -1,0 +1,24 @@
+{
+  "name": "static-ci",
+  "version": "1.0.0",
+  "description": "Automate the process of pulling my latest commits to my website, building the docker image, and deploying",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ramsgoli/static-CI.git"
+  },
+  "author": "Ram Goli",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ramsgoli/static-CI/issues"
+  },
+  "homepage": "https://github.com/ramsgoli/static-CI#readme",
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2"
+  }
+}
