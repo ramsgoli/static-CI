@@ -6,11 +6,12 @@ const bodyParser = require('body-parser');
 // env parser
 require('dotenv').config();
 
-// GIT
-const git = require('nodegit');
-
 // For parsing github json
 app.use(bodyParser.json());
+
+app.get('/', (req, res) => {
+    res.send("Hello world");
+})
 
 app.post('/', (req, res) => {
     console.log(req.body);
