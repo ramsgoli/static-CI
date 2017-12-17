@@ -12,5 +12,6 @@ RUN npm install
 # copy source files
 COPY *.js /var/static-CI/
 
+EXPOSE 3000
 CMD ["npm", "start"]
 
