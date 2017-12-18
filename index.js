@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 // env parser
 require('dotenv').config();
 
+const { verifyGithub } = require('./util');
+
 // For parsing github json
 app.use(bodyParser.json());
 
@@ -14,7 +16,11 @@ app.get('/', (req, res) => {
 })
 
 app.post('/', (req, res) => {
-    res.status(200);
+    if (verifyGithub(req)) {
+        return res.status(200).end();
+    } else {
+        return res.status(401).end();
+    }
 });
 
 app.listen(3000, () => {
