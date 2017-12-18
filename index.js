@@ -4,7 +4,7 @@ const app = express();
 const bodyParser = require('body-parser');
 
 // env parser
-require('dotenv').config();
+require('dotenv').load();
 
 const { verifyGithub } = require('./util');
 

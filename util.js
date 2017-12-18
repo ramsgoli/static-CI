@@ -1,7 +1,6 @@
 const crypto = require('crypto');
 
 const verifyGithub = (req) => {
-    console.log(req.headers);
     if (!req.headers['x-hub-signature']) {
         return false;
     }
@@ -9,8 +8,7 @@ const verifyGithub = (req) => {
     const theirSig = req.headers['x-hub-signature'];
     const payload = JSON.stringify(req.body);
     const secret = process.env.TOKEN;
-    const ourSig = `sha=${crypto.createHmac('sha1', secret).update(payload).digest('hex')}`;
-    console.log(theirSig, ourSig);
+    const ourSig = `sha1=${crypto.createHmac('sha1', secret).update(payload).digest('hex')}`;
 
     try {
         return crypto.timingSafeEqual(Buffer.from(theirSig), Buffer.from(ourSig));
