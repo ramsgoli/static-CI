@@ -31,31 +31,31 @@ app.post('/', (req, res) => {
 
     // merge origin/master into our local master branch
         res.status(200).end();
-		try {
-			process.chdir(pathToRepo);
-		} catch(err) {
-			// well shit
-			console.error("Could not change directory: " + err);
+        try {
+            process.chdir(pathToRepo);
+        } catch(err) {
+            // well shit
+            console.error("Could not change directory: " + err);
             return;
-		}
+        }
 
-		exec('docker-compose down').then((stdout) => {
-			console.log(stdout);
-			return exec('git pull');
-		}).then(stdout => {
-			console.log(stdout);
-			return exec('make build_image');
-		}).then(stdout => {
-			console.log(stdout);
-			return exec('make run');
-		}).then(stdout => {
-			console.log(stdout);
-		}).catch(err => {
-			console.error(err);		
-		});
+        exec('docker-compose down').then((stdout) => {
+            console.log(stdout);
+            return exec('git pull');
+        }).then(stdout => {
+            console.log(stdout);
+            return exec('make build_image');
+        }).then(stdout => {
+            console.log(stdout);
+            return exec('make run');
+        }).then(stdout => {
+            console.log(stdout);
+        }).catch(err => {
+            console.error(err);		
+        });
 		
     } else {
-		return res.status(401).end();
+        return res.status(401).end();
     }
 });
 
