@@ -30,12 +30,13 @@ app.post('/', (req, res) => {
     if (verifyGithub(req)) {
 
     // merge origin/master into our local master branch
+        res.status(200).end();
 		try {
 			process.chdir(pathToRepo);
 		} catch(err) {
 			// well shit
 			console.error("Could not change directory: " + err);
-			return res.status(200).end();
+            return;
 		}
 
 		exec('docker-compose down').then((stdout) => {
@@ -49,7 +50,6 @@ app.post('/', (req, res) => {
 			return exec('make run');
 		}).then(stdout => {
 			console.log(stdout);
-			return res.status(200).end();		
 		}).catch(err => {
 			console.error(err);		
 		});
