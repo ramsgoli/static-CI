@@ -8,9 +8,9 @@ const verifyGithub = (req) => {
     const theirSig = req.headers['x-hub-signature'];
     const payload = JSON.stringify(req.body);
     const secret = process.env.TOKEN;
-    const ourSig = `sha1=${crypto.createHmac('sha1', secret).update(payload).digest('hex')}`;
 
     try {
+        const ourSig = `sha1=${crypto.createHmac('sha1', secret).update(payload).digest('hex')}`;
         return crypto.timingSafeEqual(Buffer.from(theirSig), Buffer.from(ourSig));
     } catch(e) {
         return false;
