@@ -21,8 +21,8 @@ app.get('/', (req, res) => {
 })
 
 const homeDir = os.homedir();
-const pathToRepo = `${homeDir}/ramsgoli.github.io`;
-const pathToMakefile = `${homeDir}/ramsgoli.github.io/Makefile`;
+const pathToRepo = `${homeDir}/front-page`;
+const pathToMakefile = `${homeDir}/front-page/Makefile`;
 
 const exec = util.promisify(cp.exec);
 
@@ -49,11 +49,12 @@ app.post('/', (req, res) => {
             console.log(stdout);
             return exec('make run');
         }).then(stdout => {
+            console.log('==========finished:===========')
             console.log(stdout);
         }).catch(err => {
-            console.error(err);		
+            console.error(err);
         });
-		
+
     } else {
         return res.status(401).end();
     }
